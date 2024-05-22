@@ -3,50 +3,74 @@ extends Node
 const file_path := "user://timelog"
 
 class Log:
-	var time: int
+	var date: int
+	var time_elapsed: int
 	var text: String
-	
-	static func create(text: String, time: int = 0) -> Log:
-		if time == 0:
-			time = Time.get_unix_time_from_system()
-		
-		var log = Log.new()
-		log.time = time
-		log.text = text
-		return log
+	var is_work: bool
 
 class Day:
+	signal day_changed
+	
 	var date: int
 	var logs: Array[Log] = []
 
-	static func create(date: int = 0) -> Day:
-		if date == 0:
-			date = Time.get_unix_time_from_system()
-		
+	static func create(date: int) -> Day:
 		var day = Day.new()
 		day.date = date
 		return day
+	
+	func add_log(text: String) -> Log:
+		var log = Log.new()
+		log.text = text
+		log.date = Time.get_unix_time_from_system()
+		
+		var last_log_date = self.get_last_log_time()
+		if last_log_date != 0:
+			log.time_elapsed = log.date - last_log_date
+		else:
+			log.time_elapsed = 0
+		
+		# TODO is this the best way to signify if its a break?
+		if log.text.contains("@"):
+			log.is_work = false
+		else:
+			log.is_work = true
+		
+		self.logs.append(log)
+		
+		self.day_changed.emit()
+		
+		return log
 
-	func total_time() -> int:
+	func total_work_time() -> int:
 		var total = 0
 		for log in self.logs:
-			total += log.time
+			if log.is_work:
+				total += log.time
+		
+		return total
+	
+	func total_break_time() -> int:
+		var total = 0
+		for log in self.logs:
+			if not log.is_work:
+				total += log.time
 		
 		return total
 	
 	func get_last_log_time() -> int:
+		# the first log cannot be timed
+		if self.logs.size() == 0:
+			return 0
+		
 		var last_log = self.logs[-1]
 		if last_log:
-			return last_log.time
+			return last_log.date
 		
 		return 0
 
 class DataStore:
 	var days: Dictionary = {}
-	
-	func get_day(date: int) -> Day:
-		var date_dict := Time.get_datetime_dict_from_unix_time(date)
-		return self.days.get(str(date_dict.year) + str(date_dict.month) + str(date_dict.day))
 	
 	func get_today() -> Day:
 		var today_date := Time.get_datetime_dict_from_system()
@@ -56,7 +80,7 @@ class DataStore:
 			return today
 		
 		# create the day
-		today = Day.create()
+		today = Day.create(Time.get_unix_time_from_datetime_dict(today_date))
 		self.days[today_datestamp] = today
 		return today
 

@@ -50,14 +50,12 @@ horizontal_alignment = 1
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.042
-anchor_top = 0.139
-anchor_right = 0.958
-anchor_bottom = 0.861
-offset_left = -0.160002
-offset_top = -0.0800095
-offset_right = 0.159973
-offset_bottom = 0.0799561
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 100.0
+offset_right = -20.0
+offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
@@ -68,33 +66,26 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Do something
-Do not do something: 2h 30m"
-horizontal_alignment = 1
+Do not do something: [bold]2h 30m[/bold]"
+tab_stops = PackedFloat32Array(80)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="LineEdit" type="LineEdit" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 45)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.042
-anchor_top = 0.889
-anchor_right = 0.958
-anchor_bottom = 0.972
-offset_left = -0.160002
-offset_top = -0.0800171
-offset_right = 0.159973
-offset_bottom = 0.159973
+anchor_top = 0.929
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 0.119995
+offset_right = -20.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
-
-[node name="TextEdit" type="TextEdit" parent="HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Enter text here"
+alignment = 1
+max_length = 40
 middle_mouse_paste_enabled = false
-
-[node name="LogButton" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(70, 0)
-layout_mode = 2
-text = "Log"
-
-[connection signal="pressed" from="HBoxContainer/LogButton" to="." method="_on_log_button_pressed"]
+caret_blink = true
