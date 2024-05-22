@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b14lfx64ryd0i"]
+[gd_scene load_steps=3 format=3 uid="uid://b14lfx64ryd0i"]
 
 [ext_resource type="Script" path="res://scenes/ui/home.gd" id="1_us0s6"]
+[ext_resource type="Theme" uid="uid://dqo22fja1bqg5" path="res://other/theme.tres" id="2_oepg7"]
 
 [node name="Home" type="Control"]
 layout_mode = 3
@@ -21,7 +22,8 @@ grow_vertical = 2
 color = Color(3.85046e-07, 0.58805, 0.590802, 1)
 metadata/_edit_lock_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="TimeElapsedLabel" type="Label" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -29,23 +31,26 @@ anchor_right = 0.5
 offset_left = -66.0
 offset_top = 10.0
 offset_right = 66.0
-offset_bottom = 70.0
+offset_bottom = 33.0
 grow_horizontal = 2
-theme_override_constants/separation = -5
-
-[node name="DateLabel" type="Label" parent="VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "1/1/2024"
-horizontal_alignment = 1
-
-[node name="TimeElapsedLabel" type="Label" parent="VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 20
 text = "99h 99m 99s"
 horizontal_alignment = 1
+
+[node name="DateLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -142.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 41.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 20
+text = "1/1/2024"
+horizontal_alignment = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
@@ -60,14 +65,10 @@ grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
 
-[node name="LogLabel" type="Label" parent="ScrollContainer"]
-unique_name_in_owner = true
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Do something
-Do not do something: [bold]2h 30m[/bold]"
-tab_stops = PackedFloat32Array(80)
 
 [node name="LineEdit" type="LineEdit" parent="."]
 unique_name_in_owner = true
@@ -89,3 +90,19 @@ alignment = 1
 max_length = 40
 middle_mouse_paste_enabled = false
 caret_blink = true
+
+[node name="LogLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+offset_left = 20.0
+offset_top = 100.0
+offset_right = 460.0
+offset_bottom = 620.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_oepg7")
+text = "Lorem ipsum dolorem"
+tab_stops = PackedFloat32Array(80)
+
+[connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]

@@ -6,7 +6,7 @@ class Log:
 	var date: int
 	var time_elapsed: int
 	var text: String
-	var is_work: bool
+	var is_work: bool = true
 
 class Day:
 	signal day_changed
@@ -21,7 +21,15 @@ class Day:
 	
 	func add_log(text: String) -> Log:
 		var log = Log.new()
-		log.text = text
+		
+		# if prefixed with space then its a non work log
+		if text.begins_with(" "):
+			log.is_work = false
+			log.text = text.substr(1)
+		else:
+			log.is_work = true
+			log.text = text
+
 		log.date = Time.get_unix_time_from_system()
 		
 		var last_log_date = self.get_last_log_time()
@@ -29,12 +37,6 @@ class Day:
 			log.time_elapsed = log.date - last_log_date
 		else:
 			log.time_elapsed = 0
-		
-		# TODO is this the best way to signify if its a break?
-		if log.text.contains("@"):
-			log.is_work = false
-		else:
-			log.is_work = true
 		
 		self.logs.append(log)
 		
