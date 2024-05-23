@@ -26,6 +26,7 @@ static func load_from_file(file: FileAccess) -> LogCalendar:
 func save() -> void:
 	var file: FileAccess = FileAccess.open(FILE_SAVE_PATH, FileAccess.WRITE)
 	self.save_to_file(file)
+	print("saving calendar..")
 
 static func try_to_load_saved() -> LogCalendar:
 	if FileAccess.file_exists(FILE_SAVE_PATH):

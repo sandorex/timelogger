@@ -25,4 +25,4 @@ func _ready():
 
 	# dim logs that are breaks
 	if self.type == LogEntry.Break:
-		self.modulate.a = 0.5
+		self.modulate.a = 0.65

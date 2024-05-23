@@ -1,15 +1,15 @@
 [gd_scene load_steps=2 format=3 uid="uid://b14lfx64ryd0i"]
 
-[ext_resource type="Script" path="res://scenes/ui/home.gd" id="1_us0s6"]
+[ext_resource type="Script" path="res://scenes/ui/view_collection.gd" id="1_oux0t"]
 
-[node name="Home" type="Control"]
+[node name="ViewCollection" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_us0s6")
+script = ExtResource("1_oux0t")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -57,7 +57,7 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 20.0
-offset_top = 100.0
+offset_top = 60.0
 offset_right = -20.0
 offset_bottom = -100.0
 grow_horizontal = 2
@@ -84,7 +84,7 @@ offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
-placeholder_text = "Enter text here"
+placeholder_text = "Enter log entry here"
 alignment = 1
 max_length = 40
 middle_mouse_paste_enabled = false
