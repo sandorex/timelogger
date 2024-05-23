@@ -23,10 +23,16 @@ func add(log_entry: LogEntry):
 
 func get_total_time(type: int = -1) -> int:
 	var total = 0
-	for log_entry: LogEntry in self.log_entries:
-		# if -1 then do not filter at all
-		if type == -1 or log_entry.type == type:
+	
+	if type == -1:
+		# sum everything
+		for log_entry: LogEntry in self.log_entries:
 			total += log_entry.elapsed_time
+	else:
+		# filter specific type
+		for log_entry: LogEntry in self.log_entries:
+			if log_entry.type == type:
+				total += log_entry.elapsed_time
 	
 	return total
 

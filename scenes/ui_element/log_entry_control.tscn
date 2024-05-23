@@ -1,16 +1,16 @@
 [gd_scene load_steps=2 format=3 uid="uid://b3bxy3h761iae"]
 
-[ext_resource type="Script" path="res://scenes/ui_element/log_entry.gd" id="1_c8skb"]
+[ext_resource type="Script" path="res://scenes/ui_element/log_entry_control.gd" id="1_0xqtu"]
 
 [node name="Log" type="Control"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 3
 anchor_right = 1.0
-anchor_bottom = 0.049
-offset_bottom = 9.72
+anchor_bottom = 0.062
+offset_bottom = 0.359997
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_c8skb")
+script = ExtResource("1_0xqtu")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -24,13 +24,13 @@ color = Color(0.400698, 0.400698, 0.400698, 0.627451)
 [node name="TextLabel" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 10.0
-offset_top = -16.5
-offset_right = 364.0
-offset_bottom = 17.5
+offset_top = 6.0
+offset_right = -116.0
+offset_bottom = -5.0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 18
 text = "The text goes here"
@@ -40,15 +40,13 @@ clip_text = true
 [node name="TimeLabel" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
+anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -127.0
-offset_top = -13.5
+anchor_bottom = 1.0
+offset_left = 353.0
+offset_top = 9.0
 offset_right = -10.0
-offset_bottom = 13.5
+offset_bottom = -9.0
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 8

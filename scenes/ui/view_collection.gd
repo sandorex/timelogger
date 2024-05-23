@@ -30,7 +30,7 @@ func _ready() -> void:
 	
 	# create old logs
 	for log_entry in self.today.log_entries:
-		self.container.add_child(LogEntryControl.create_from_log(log_entry))
+		self.container.add_child(Globals.SCENE_UI_LOG_ENTRY_CONTROL.instantiate().init_from(log_entry))
 
 	self.refresh_screen()
 	
@@ -38,7 +38,7 @@ func _ready() -> void:
 	self.line_edit.grab_focus.call_deferred()
 
 func _on_log_added(new_log: LogEntry) -> void:
-	self.container.add_child(LogEntryControl.create_from_log(new_log))
+	self.container.add_child(Globals.SCENE_UI_LOG_ENTRY_CONTROL.instantiate().init_from(new_log))
 	self.refresh_screen()
 
 func refresh_screen() -> void:
