@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3bxy3h761iae"]
+[gd_scene load_steps=2 format=3 uid="uid://b3bxy3h761iae"]
 
-[ext_resource type="Script" path="res://scenes/ui_element/log_control.gd" id="1_c8skb"]
-[ext_resource type="Theme" uid="uid://dqo22fja1bqg5" path="res://other/theme.tres" id="1_hvy0n"]
+[ext_resource type="Script" path="res://scenes/ui_element/log_entry.gd" id="1_c8skb"]
 
 [node name="Log" type="Control"]
 custom_minimum_size = Vector2(0, 35)
@@ -33,7 +32,6 @@ offset_top = -16.5
 offset_right = 364.0
 offset_bottom = 17.5
 grow_vertical = 2
-theme = ExtResource("1_hvy0n")
 theme_override_font_sizes/font_size = 18
 text = "The text goes here"
 vertical_alignment = 1
@@ -54,7 +52,6 @@ offset_bottom = 13.5
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 8
-theme = ExtResource("1_hvy0n")
 theme_override_colors/font_color = Color(0.821788, 0.821789, 0.821789, 1)
 theme_override_font_sizes/font_size = 16
 text = "69h 69m"

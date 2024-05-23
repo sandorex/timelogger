@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b14lfx64ryd0i"]
+[gd_scene load_steps=3 format=3 uid="uid://b14lfx64ryd0i"]
 
 [ext_resource type="Script" path="res://scenes/ui/view_collection.gd" id="1_oux0t"]
+[ext_resource type="Texture2D" uid="uid://1mr7to6xqpmg" path="res://icons/ic_action_menu.png" id="2_lx38j"]
 
 [node name="ViewCollection" type="Control"]
 layout_mode = 3
@@ -89,5 +90,15 @@ alignment = 1
 max_length = 40
 middle_mouse_paste_enabled = false
 caret_blink = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 90.0
+offset_bottom = 90.0
+scale = Vector2(0.4, 0.4)
+icon = ExtResource("2_lx38j")
+flat = true
 
 [connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]

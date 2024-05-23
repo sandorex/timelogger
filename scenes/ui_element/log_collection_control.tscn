@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://bes6qse0myj43"]
+
+[ext_resource type="Script" path="res://scenes/ui_element/log_collection_control.gd" id="1_8047v"]
+
+[node name="LogCollectionControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -640.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8047v")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.400698, 0.400698, 0.400698, 0.627451)
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -13.0
+offset_right = 240.0
+offset_bottom = 13.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 18
+text = "Name"
+
+[node name="NameLabel2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -223.0
+offset_right = -10.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.823529, 0.823529, 1)
+theme_override_font_sizes/font_size = 18
+text = "Work 2h 5m 10%
+Break 2h 5m 20%"
+horizontal_alignment = 2
+vertical_alignment = 3

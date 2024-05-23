@@ -1,7 +1,7 @@
 extends Control
-class_name LogControl
+class_name LogEntryControl
 
-const SCENE_PATH := "res://scenes/ui_element/log_control.tscn"
+const SCENE_PATH := "res://scenes/ui_element/log_entry.tscn"
 
 var text: String
 var time: String
@@ -11,8 +11,8 @@ var type: int
 @onready var text_label: Label = %TextLabel
 @onready var time_label: Label = %TimeLabel
 
-static func create_from_log(log_entry: LogEntry) -> LogControl:
-	var node: LogControl = load(SCENE_PATH).instantiate()
+static func create_from_log(log_entry: LogEntry) -> LogEntryControl:
+	var node: LogEntryControl = load(SCENE_PATH).instantiate()
 	node.text = log_entry.entry_text
 	node.time = DateTime.humanize_time(log_entry.elapsed_time)
 	node.type = log_entry.type

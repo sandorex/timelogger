@@ -30,7 +30,7 @@ func _ready() -> void:
 	
 	# create old logs
 	for log_entry in self.today.log_entries:
-		self.container.add_child(LogControl.create_from_log(log_entry))
+		self.container.add_child(LogEntryControl.create_from_log(log_entry))
 
 	self.refresh_screen()
 	
@@ -38,7 +38,7 @@ func _ready() -> void:
 	self.line_edit.grab_focus.call_deferred()
 
 func _on_log_added(new_log: LogEntry) -> void:
-	self.container.add_child(LogControl.create_from_log(new_log))
+	self.container.add_child(LogEntryControl.create_from_log(new_log))
 	self.refresh_screen()
 
 func refresh_screen() -> void:
@@ -67,9 +67,6 @@ func _input(event: InputEvent) -> void:
 			elif event.is_action("enter"):
 				if self.line_edit.text:
 					self.push_log()
-	
-	if Input.is_key_pressed(KEY_C):
-		Globals.log_calendar.save()
 
 func push_log() -> void:
 	self.today.add(LogEntry.create_entry(self.line_edit.text))
