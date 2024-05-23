@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b3bxy3h761iae"]
 
-[ext_resource type="Script" path="res://scenes/ui_element/log.gd" id="1_c8skb"]
+[ext_resource type="Script" path="res://scenes/ui_element/log_control.gd" id="1_c8skb"]
 [ext_resource type="Theme" uid="uid://dqo22fja1bqg5" path="res://other/theme.tres" id="1_hvy0n"]
 
 [node name="Log" type="Control"]
@@ -30,7 +30,7 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 10.0
 offset_top = -16.5
-offset_right = 253.0
+offset_right = 364.0
 offset_bottom = 17.5
 grow_vertical = 2
 theme = ExtResource("1_hvy0n")
@@ -57,6 +57,6 @@ size_flags_horizontal = 8
 theme = ExtResource("1_hvy0n")
 theme_override_colors/font_color = Color(0.821788, 0.821789, 0.821789, 1)
 theme_override_font_sizes/font_size = 16
-text = "69h 69m 69s"
+text = "69h 69m"
 horizontal_alignment = 2
 vertical_alignment = 1
