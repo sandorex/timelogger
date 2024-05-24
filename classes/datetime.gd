@@ -6,6 +6,10 @@ static func humanize_time(time: int, show_seconds := false) -> String:
 	
 	var output := ""
 
+	# day does not work properly # TODO probably something with the time calculation
+	#if date_dict.day > 0:
+		#output += str(date_dict.day) + "d "
+
 	if date_dict.hour > 0:
 		output += str(date_dict.hour) + "h "
 	

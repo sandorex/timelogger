@@ -1,5 +1,6 @@
 extends Node
 
+var SCENE_MENU := load("res://scenes/ui/menu.tscn")
 var SCENE_VIEW_CALENDAR := load("res://scenes/ui/view_calendar.tscn")
 var SCENE_VIEW_COLLECTION := load("res://scenes/ui/view_collection.tscn")
 

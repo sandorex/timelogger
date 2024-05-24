@@ -1,5 +1,7 @@
 extends Control
 
+# TODO clone this and adapt it so there is a view_last_collection and view_collection
+
 @onready var date_label: Label = %DateLabel
 @onready var time_elapsed_label: Label = %TimeElapsedLabel
 @onready var line_edit: LineEdit = %LineEdit
@@ -79,3 +81,6 @@ func _on_line_edit_text_changed(new_text: String) -> void:
 		self.line_edit.modulate.a = 0.8
 	else:
 		self.line_edit.modulate.a = 1
+
+func _on_menu_button_pressed() -> void:
+	get_tree().change_scene_to_packed.call_deferred(Globals.SCENE_MENU)

@@ -91,7 +91,7 @@ max_length = 40
 middle_mouse_paste_enabled = false
 caret_blink = true
 
-[node name="Button" type="Button" parent="."]
+[node name="MenuButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 10.0
@@ -102,3 +102,4 @@ icon = ExtResource("2_lx38j")
 flat = true
 
 [connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
