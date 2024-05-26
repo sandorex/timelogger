@@ -38,34 +38,34 @@ text = "V 4.2.0"
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(280, 0)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchors_preset = -1
+anchor_left = 0.208
+anchor_top = 0.229
+anchor_right = 0.792
+anchor_bottom = 0.771
+offset_left = 120.16
+offset_top = 175.12
+offset_right = -120.16
+offset_bottom = -175.12
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 45
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 25
+theme_override_constants/separation = 10
 
 [node name="LastButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
-text = "Last"
+text = "Previous"
 
 [node name="NewButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
-text = "New"
+text = "+"
 
 [node name="ViewAllButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -105,3 +105,4 @@ text = "Quit"
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/LastButton" to="." method="_on_last_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NewButton" to="." method="_on_new_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ViewAllButton" to="." method="_on_view_all_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

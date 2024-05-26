@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b225g3blbdrdd"]
+
+[ext_resource type="Script" path="res://scenes/notification_receiver.gd" id="1_rdd05"]
+
+[node name="NotificationReceiver" type="Node"]
+script = ExtResource("1_rdd05")

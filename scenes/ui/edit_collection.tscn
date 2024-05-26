@@ -1,0 +1,108 @@
+[gd_scene load_steps=4 format=3 uid="uid://b14lfx64ryd0i"]
+
+[ext_resource type="Script" path="res://scenes/ui/edit_collection.gd" id="1_sqlp7"]
+[ext_resource type="Texture2D" uid="uid://1mr7to6xqpmg" path="res://icons/ic_action_menu.png" id="2_15blo"]
+[ext_resource type="PackedScene" uid="uid://b225g3blbdrdd" path="res://scenes/notification_receiver.tscn" id="3_4io0y"]
+
+[node name="EditCollection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sqlp7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(3.85046e-07, 0.58805, 0.590802, 1)
+metadata/_edit_lock_ = true
+
+[node name="TimeElapsedLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -66.0
+offset_top = 10.0
+offset_right = 66.0
+offset_bottom = 33.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "99h 99m 99s"
+horizontal_alignment = 1
+
+[node name="DateLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -142.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 41.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 20
+text = "1/1/2024"
+horizontal_alignment = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 60.0
+offset_right = -20.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LineEdit" type="LineEdit" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.929
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 0.119995
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+placeholder_text = "Enter log entry here"
+alignment = 1
+max_length = 40
+middle_mouse_paste_enabled = false
+caret_blink = true
+
+[node name="MenuButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 90.0
+offset_bottom = 90.0
+scale = Vector2(0.4, 0.4)
+icon = ExtResource("2_15blo")
+flat = true
+
+[node name="NotificationReceiver" parent="." instance=ExtResource("3_4io0y")]
+
+[connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]

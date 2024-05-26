@@ -1,50 +1,43 @@
 extends Control
 
-# TODO clone this and adapt it so there is a view_last_collection and view_collection
+@export var editable: bool = true
 
 @onready var date_label: Label = %DateLabel
 @onready var time_elapsed_label: Label = %TimeElapsedLabel
 @onready var line_edit: LineEdit = %LineEdit
 @onready var container: VBoxContainer = $ScrollContainer/VBoxContainer
 
-var today: LogCollection
-
-func _notification(what: int) -> void:
-	match what:
-		# TODO android back button
-
-		# do not waste resources when window is not focused
-		NOTIFICATION_WM_WINDOW_FOCUS_IN:
-			get_tree().paused = false
-		NOTIFICATION_WM_WINDOW_FOCUS_OUT:
-			get_tree().paused = true
-
 func _init() -> void:
-	self.today = Globals.log_calendar.get_last_collection()
-	if not self.today:
-		self.today = LogCollection.create_collection("today?")
-		Globals.log_calendar.log_collections.append(self.today)
-	
-	self.today.log_entry_added.connect(self._on_log_added)
+	Globals.collection.log_entry_added.connect(self._on_log_added)
 
 func _ready() -> void:
-	self.date_label.text = self.today.name
+	self.date_label.text = Globals.collection.name
 	
 	# create old logs
-	for log_entry in self.today.log_entries:
+	for log_entry in Globals.collection.log_entries:
 		self.container.add_child(Globals.SCENE_UI_LOG_ENTRY_CONTROL.instantiate().init_from(log_entry))
 
 	self.refresh_screen()
 	
-	# focus line edit
-	self.line_edit.grab_focus.call_deferred()
+	if self.editable:
+		# focus line edit
+		self.line_edit.grab_focus.call_deferred()
+	else:
+		# these are not needed for previewing
+		self.line_edit.editable = false
+		self.line_edit.visible = false
+		self.time_elapsed_label.visible = false
+		
+		# just in case disable key press actions
+		self.set_process_input(false)
+		self.set_process(false)
 
 func _on_log_added(new_log: LogEntry) -> void:
 	self.container.add_child(Globals.SCENE_UI_LOG_ENTRY_CONTROL.instantiate().init_from(new_log))
 	self.refresh_screen()
 
 func refresh_screen() -> void:
-	var last_entry := self.today.get_last_entry()
+	var last_entry := Globals.collection.get_last_entry()
 	if last_entry:
 		self.time_elapsed_label.text = DateTime.humanize_time(
 			int(Time.get_unix_time_from_system() - last_entry.creation_date)
@@ -71,9 +64,9 @@ func _input(event: InputEvent) -> void:
 					self.push_log()
 
 func push_log() -> void:
-	self.today.add(LogEntry.create_entry(self.line_edit.text))
+	Globals.collection.add(LogEntry.create_entry(self.line_edit.text))
 	self.line_edit.text = ""
-	Globals.log_calendar.save()
+	Globals.calendar.save()
 
 func _on_line_edit_text_changed(new_text: String) -> void:
 	# highlight that the log is a break by making line edit transparent
