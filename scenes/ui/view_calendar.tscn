@@ -10,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_huaej")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -19,10 +20,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(3.85046e-07, 0.58805, 0.590802, 1)
 metadata/_edit_lock_ = true
 
 [node name="MenuButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 90.0

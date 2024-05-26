@@ -1,8 +1,5 @@
 extends Control
 
-# TODO on click / tap show read-only view of the log
-# TODO remove the trash button to simplify things
-
 var log_collection: LogCollection
 
 @onready var name_label: Label = %NameLabel
@@ -33,7 +30,10 @@ func _ready() -> void:
 			str(int(total_work_perc)) + " % / " + str(int(total_break_perc)) + " %"
 		)
 
-func _on_button_pressed() -> void:
-	Globals.calendar.log_collections.erase(self.log_collection)
-	Globals.calendar.save()
-	self.queue_free()
+func _on_gui_input(event: InputEvent) -> void:
+	# TODO open view calendar and go back to this scene instead of changing scene
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			# view (read-only) the collection
+			Globals.collection = self.log_collection
+			get_tree().change_scene_to_packed(Globals.SCENE_VIEW_COLLECTION)

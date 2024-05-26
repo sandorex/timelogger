@@ -76,4 +76,9 @@ func _on_line_edit_text_changed(new_text: String) -> void:
 		self.line_edit.modulate.a = 1
 
 func _on_menu_button_pressed() -> void:
-	get_tree().change_scene_to_packed.call_deferred(Globals.SCENE_MENU)
+	if self.editable:
+		get_tree().change_scene_to_packed.call_deferred(Globals.SCENE_MENU)
+	else:
+		# TODO FIXME: this is hacky and will bite me in the arse later
+		# this should go to previous screen but im lazy to do that right now
+		get_tree().change_scene_to_packed.call_deferred(Globals.SCENE_VIEW_CALENDAR)

@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bes6qse0myj43"]
+[gd_scene load_steps=2 format=3 uid="uid://bes6qse0myj43"]
 
 [ext_resource type="Script" path="res://scenes/ui_element/log_collection_control.gd" id="1_8047v"]
-[ext_resource type="Texture2D" uid="uid://ctow2uht3d1hn" path="res://icons/ic_delete_forever.png" id="2_lr0x7"]
 
 [node name="LogCollectionControl" type="Control"]
 custom_minimum_size = Vector2(0, 80)
@@ -21,6 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.400698, 0.400698, 0.400698, 0.627451)
 
 [node name="NameLabel" type="Label" parent="."]
@@ -40,14 +40,16 @@ text = "Name"
 [node name="TimeLabel" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 193.0
-offset_top = 10.0
-offset_right = -74.0
-offset_bottom = -10.0
-grow_horizontal = 2
+anchor_bottom = 0.5
+offset_left = -161.0
+offset_top = -27.5
+offset_right = -10.0
+offset_bottom = 27.5
+grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.823529, 0.823529, 0.823529, 1)
 theme_override_font_sizes/font_size = 18
@@ -56,23 +58,4 @@ Break 2h 5m 20%"
 horizontal_alignment = 1
 vertical_alignment = 3
 
-[node name="Button" type="Button" parent="."]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -69.0
-offset_top = -30.0
-offset_right = -5.0
-offset_bottom = 30.0
-grow_horizontal = 0
-grow_vertical = 2
-icon = ExtResource("2_lr0x7")
-flat = true
-icon_alignment = 1
-expand_icon = true
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
