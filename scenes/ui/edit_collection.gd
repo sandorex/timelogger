@@ -9,8 +9,6 @@ extends Control
 
 func _init() -> void:
 	Globals.collection.log_entry_added.connect(self._on_log_added)
-	
-	# TODO set size so android phones with cutouts or cameras show nicely
 
 func _ready() -> void:
 	self.date_label.text = Globals.collection.name
@@ -30,9 +28,11 @@ func _ready() -> void:
 		self.line_edit.visible = false
 		self.time_elapsed_label.visible = false
 		
-		# just in case disable key press actions
-		self.set_process_input(false)
+		# just in case disable process
 		self.set_process(false)
+		
+		# go back to view all instead of menu
+		Globals.scene_back = Globals.SCENE_VIEW_CALENDAR
 
 func _on_log_added(new_log: LogEntry) -> void:
 	self.container.add_child(Globals.SCENE_UI_LOG_ENTRY_CONTROL.instantiate().init_from(new_log))
@@ -49,16 +49,13 @@ func refresh_screen() -> void:
 
 func _process(_delta: float) -> void:
 	self.refresh_screen()
-	
-	# adapt to virtual keyboard
-	if DisplayServer.has_feature(DisplayServer.FEATURE_VIRTUAL_KEYBOARD):
-		var keyboard_height := DisplayServer.virtual_keyboard_get_height()
-		self.size.y = get_viewport_rect().size.y - keyboard_height / get_viewport_transform().get_scale().y
 
 func _input(event: InputEvent) -> void:
-	if event.is_pressed() and event.is_action("enter"):
+	if event.is_action_pressed("enter"):
 		if self.line_edit.text:
 			self.push_log()
+	elif event.is_action_pressed("back"):
+		Globals.go_back()
 
 func push_log() -> void:
 	Globals.collection.add(LogEntry.create_entry(self.line_edit.text))
@@ -71,11 +68,3 @@ func _on_line_edit_text_changed(new_text: String) -> void:
 		self.line_edit.modulate.a = 0.65
 	else:
 		self.line_edit.modulate.a = 1
-
-func _on_menu_button_pressed() -> void:
-	if self.editable:
-		get_tree().change_scene_to_packed.call_deferred(Globals.SCENE_MENU)
-	else:
-		# TODO FIXME: this is hacky and will bite me in the arse later
-		# this should go to previous screen but im lazy to do that right now
-		get_tree().change_scene_to_packed.call_deferred(Globals.SCENE_VIEW_CALENDAR)

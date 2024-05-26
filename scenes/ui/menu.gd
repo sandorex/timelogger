@@ -1,6 +1,7 @@
 extends Control
 
 @onready var version_label: Label = %VersionLabel
+@onready var test_button: Button = %TestButton
 
 func _notification(what: int) -> void:
 	match what:
@@ -13,6 +14,7 @@ func _ready() -> void:
 
 	if OS.has_feature("editor"):
 		self.version_label.text += " (Editor)"
+		self.test_button.visible = true
 	elif OS.has_feature("debug"):
 		self.version_label.text += " (Debug)"
 
@@ -39,3 +41,7 @@ func _on_new_button_pressed() -> void:
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
+
+func _on_test_button_pressed() -> void:
+	print("unimplemented atm..")
+	# TODO do test data so i can test without waiting
