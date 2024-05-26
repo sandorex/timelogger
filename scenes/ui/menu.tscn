@@ -39,17 +39,15 @@ text = "V 4.2.0"
 custom_minimum_size = Vector2(280, 0)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.208
-anchor_top = 0.229
-anchor_right = 0.792
-anchor_bottom = 0.771
-offset_left = 120.16
-offset_top = 175.12
-offset_right = -120.16
-offset_bottom = -175.12
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 220.0
+offset_top = 340.0
+offset_right = -220.0
+offset_bottom = -340.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 45
+theme_override_constants/separation = 75
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2

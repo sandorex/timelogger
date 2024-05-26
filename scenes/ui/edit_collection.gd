@@ -9,6 +9,8 @@ extends Control
 
 func _init() -> void:
 	Globals.collection.log_entry_added.connect(self._on_log_added)
+	
+	# TODO set size so android phones with cutouts or cameras show nicely
 
 func _ready() -> void:
 	self.date_label.text = Globals.collection.name
@@ -47,21 +49,16 @@ func refresh_screen() -> void:
 
 func _process(_delta: float) -> void:
 	self.refresh_screen()
+	
+	# adapt to virtual keyboard
+	if DisplayServer.has_feature(DisplayServer.FEATURE_VIRTUAL_KEYBOARD):
+		var keyboard_height := DisplayServer.virtual_keyboard_get_height()
+		self.size.y = get_viewport_rect().size.y - keyboard_height / get_viewport_transform().get_scale().y
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch:
-		# push log on double tap
-		if event.double_tap:
-			if self.line_edit.text:
-				self.push_log()
-	else:
-		if event.is_pressed():
-			# allow pushing empty log with force-enter action
-			if event.is_action("force-enter"):
-				self.push_log()
-			elif event.is_action("enter"):
-				if self.line_edit.text:
-					self.push_log()
+	if event.is_pressed() and event.is_action("enter"):
+		if self.line_edit.text:
+			self.push_log()
 
 func push_log() -> void:
 	Globals.collection.add(LogEntry.create_entry(self.line_edit.text))
@@ -71,7 +68,7 @@ func push_log() -> void:
 func _on_line_edit_text_changed(new_text: String) -> void:
 	# highlight that the log is a break by making line edit transparent
 	if new_text.begins_with(" "):
-		self.line_edit.modulate.a = 0.8
+		self.line_edit.modulate.a = 0.65
 	else:
 		self.line_edit.modulate.a = 1
 
